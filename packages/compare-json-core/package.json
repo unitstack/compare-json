@@ -1,0 +1,46 @@
+{
+  "name": "@compare-json/core",
+  "license": "MIT",
+  "version": "0.1.0",
+  "description": "Lightweight library for structured JSON comparison.",
+  "keywords": [
+    "compare json",
+    "json comparison",
+    "json diff"
+  ],
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "node": {
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.js"
+      },
+      "default": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup && tsc-alias",
+    "lint": "eslint",
+    "test": "npm run test-type && npm run test-coverage",
+    "test-type": "tsc --noEmit",
+    "test-unit": "vitest run",
+    "test-coverage": "vitest run --coverage",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@compare-json/eslint-config": "workspace:*",
+    "@compare-json/tsconfig": "workspace:*",
+    "@types/node": "^20",
+    "@vitest/coverage-v8": "^4.0.18",
+    "eslint": "^9",
+    "tsc-alias": "^1.8.16",
+    "tsup": "^8.5.1",
+    "typescript": "^5",
+    "vitest": "^4.0.18"
+  }
+}
