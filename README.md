@@ -18,11 +18,12 @@ Most JSON diff tools either output unstructured text or hide the parts that matt
 - **Zero runtime dependencies** in `@compare-json/core`.
 - **CLI** with table or JSON output, reading from inline strings or files.
 - **MCP server** built in — drop the CLI into any MCP-aware AI assistant.
+- **Agent Skill** — a single skill that works in Claude Code, OpenAI Codex CLI, and OpenCode.
 - Full **TypeScript** types.
 
 ## Packages
 
-This is a pnpm workspace. The two published packages are:
+This is a pnpm workspace:
 
 | Package | Description |
 |---------|-------------|
@@ -87,6 +88,16 @@ Use `--json-export` for machine-readable output, or `--mcp` to launch as an MCP 
 }
 ```
 
+### Skill
+
+A single [`SKILL.md`](./skills/compare-json/SKILL.md) teaches AI coding assistants how to invoke the CLI on demand. The file follows the open [Agent Skills](https://github.com/anthropics/skills) format and works across Claude Code, OpenAI Codex CLI, OpenCode, Cursor, and 50+ others.
+
+The fastest install is [`npx skills`](https://github.com/vercel-labs/skills) — it auto-detects every agent you have installed and drops the skill into each one:
+
+```bash
+npx skills add unitstack/compare-json
+```
+
 ## Development
 
 Requires Node.js ≥ 20 and pnpm.
@@ -109,9 +120,11 @@ The repo layout:
 
 ```
 packages/
-├── compare-json-core/   # @compare-json/core — library
-├── compare-json-cli/    # @compare-json/cli  — CLI + MCP server
-└── internal/            # shared eslint/tsconfig (not published)
+├── compare-json-core/    # @compare-json/core — library
+├── compare-json-cli/     # @compare-json/cli  — CLI + MCP server
+└── internal/             # shared eslint/tsconfig (not published)
+skills/
+└── compare-json/         # SKILL.md for Claude Code / Codex CLI / OpenCode
 ```
 
 ## License
