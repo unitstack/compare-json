@@ -1,13 +1,18 @@
 {
   "name": "@compare-json/cli",
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Command-line tool and MCP server for structured JSON comparison.",
   "keywords": [
     "compare json",
     "json comparison",
     "json diff"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unitstack/compare-json.git",
+    "directory": "packages/compare-json-cli"
+  },
   "bin": {
     "compare-json": "./dist/cli.js"
   },
