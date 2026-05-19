@@ -1,7 +1,7 @@
 {
   "name": "@compare-json/cli",
   "license": "MIT",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Command-line tool and MCP server for structured JSON comparison.",
   "keywords": [
     "compare json",
@@ -20,7 +20,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup && tsc-alias",
+    "build": "rslib build",
     "lint": "eslint",
     "test": "npm run test-type && npm run test-coverage && npm run test-e2e",
     "test-type": "tsc --noEmit",
@@ -43,8 +43,7 @@
     "@types/node": "^20",
     "@vitest/coverage-v8": "^4.0.18",
     "eslint": "^9",
-    "tsc-alias": "^1.8.16",
-    "tsup": "^8.5.1",
+    "@rslib/core": "^0.21.5",
     "typescript": "^5",
     "vitest": "^4.0.18"
   }

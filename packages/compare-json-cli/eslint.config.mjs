@@ -6,9 +6,9 @@ export default defineConfig([
   {
     languageOptions: {
       parserOptions: {
-        project: './tsconfig.json',
+        project: './tsconfig.eslint.json',
       },
     },
   },
-  globalIgnores(['dist/**', 'node_modules/**', '.coverage/**']),
+  globalIgnores(['dist/**', 'node_modules/**', '.coverage/**', 'scripts/**']),
 ]);

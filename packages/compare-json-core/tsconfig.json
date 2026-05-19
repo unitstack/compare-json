@@ -2,13 +2,17 @@
   "extends": "@compare-json/tsconfig/base.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "rootDir": "src",
     "outDir": "dist",
+    "declaration": true,
+    "declarationDir": "./dist",
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*", "tsup.config.ts", "eslint.config.mjs", "vitest.config.ts"],
+  "include": ["src/**/*"],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "src/**/__tests__/**"
   ]
 }
