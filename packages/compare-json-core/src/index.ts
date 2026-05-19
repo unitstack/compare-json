@@ -5,4 +5,4 @@ export {
   type JSONValueDiffType,
   type JSONValueDifference,
 } from './compare';
-export { pathSegmentsToString } from './utils';
+export { getValueType, pathSegmentsToString } from './utils';

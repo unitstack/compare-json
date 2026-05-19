@@ -1,7 +1,7 @@
 {
   "name": "@compare-json/cli",
   "license": "MIT",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Command-line tool and MCP server for structured JSON comparison.",
   "keywords": [
     "compare json",
