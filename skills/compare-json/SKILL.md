@@ -7,6 +7,10 @@ description: Compare two JSON files or strings and identify the differences (add
 
 Use `npx @compare-json/cli` to compare two JSON values and identify their differences.
 
+## Online Playground
+
+Try it out at [https://comparejson.com](https://comparejson.com)
+
 ## Usage
 
 ```bash
