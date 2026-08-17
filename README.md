@@ -29,6 +29,7 @@ This is a pnpm workspace:
 |---------|-------------|
 | [`@compare-json/core`](./packages/compare-json-core) | Core comparison library (programmatic API). |
 | [`@compare-json/cli`](./packages/compare-json-cli) | Command-line tool & MCP server, built on top of `core`. |
+| [`compare-json-vscode`](./apps/compare-json-vscode) | VSCode extension: aligned diff view + difference navigator. |
 
 ## Quick Start
 
@@ -122,6 +123,7 @@ The repo layout:
 packages/
 ├── compare-json-core/    # @compare-json/core — library
 ├── compare-json-cli/     # @compare-json/cli  — CLI + MCP server
+├── compare-json-vscode/  # VSCode extension
 └── internal/             # shared eslint/tsconfig (not published)
 skills/
 └── compare-json/         # SKILL.md for Claude Code / Codex CLI / OpenCode

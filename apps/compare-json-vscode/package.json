@@ -1,0 +1,129 @@
+{
+  "name": "compare-json-vscode",
+  "displayName": "Compare JSON",
+  "description": "Semantic JSON comparison: aligned diff view and a type-grouped difference navigator, powered by @compare-json/core.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "publisher": "unitstack",
+  "homepage": "https://comparejson.com",
+  "icon": "media/icon.png",
+  "keywords": ["json", "compare", "diff"],
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unitstack/compare-json.git",
+    "directory": "apps/compare-json-vscode"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": ["onView:compare-json.diffs"],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Compare JSON",
+      "properties": {
+        "compare-json.arrayCompareMethod": {
+          "type": "string",
+          "enum": ["byIndex", "lcs", "unordered"],
+          "default": "byIndex",
+          "description": "How arrays are compared: by index, minimal diff (LCS), or unordered multiset match."
+        },
+        "compare-json.keyCaseInsensitive": {
+          "type": "boolean",
+          "default": false,
+          "description": "Ignore case when matching object keys."
+        },
+        "compare-json.valueCaseInsensitive": {
+          "type": "boolean",
+          "default": false,
+          "description": "Ignore case when comparing string values."
+        },
+        "compare-json.numericStringEqualsNumber": {
+          "type": "boolean",
+          "default": false,
+          "description": "Treat numeric strings (e.g. \"1\") as equal to numbers (1)."
+        }
+      }
+    },
+    "commands": [
+      { "command": "compare-json.compareWith", "title": "Compare Active Editor with...", "category": "Compare JSON" },
+      { "command": "compare-json.selectForCompare", "title": "Select for Compare", "category": "Compare JSON" },
+      { "command": "compare-json.compareWithSelected", "title": "Compare with Selected", "category": "Compare JSON" },
+      { "command": "compare-json.configureOptions", "title": "Configure Comparison Options", "category": "Compare JSON", "icon": "$(settings-gear)" },
+      { "command": "compare-json.swapSides", "title": "Swap Sides", "category": "Compare JSON", "icon": "$(arrow-swap)" },
+      { "command": "compare-json.clearResults", "title": "Clear Results", "category": "Compare JSON", "icon": "$(clear-all)" },
+      { "command": "compare-json.revealDiff", "title": "Reveal Difference", "category": "Compare JSON" }
+    ],
+    "submenus": [
+      { "id": "compare-json.submenu", "label": "Compare JSON" }
+    ],
+    "menus": {
+      "commandPalette": [
+        { "command": "compare-json.compareWithSelected", "when": "compare-json.hasSelected" },
+        { "command": "compare-json.revealDiff", "when": "false" }
+      ],
+      "compare-json.submenu": [
+        { "command": "compare-json.compareWith", "group": "compare-json@1" },
+        { "command": "compare-json.selectForCompare", "group": "compare-json@2" },
+        { "command": "compare-json.compareWithSelected", "when": "compare-json.hasSelected", "group": "compare-json@3" }
+      ],
+      "editor/title/context": [
+        { "submenu": "compare-json.submenu", "when": "resourceLangId == json", "group": "compare-json" }
+      ],
+      "editor/context": [
+        { "submenu": "compare-json.submenu", "when": "resourceLangId == json", "group": "compare-json" }
+      ],
+      "explorer/context": [
+        { "submenu": "compare-json.submenu", "when": "resourceExtname == .json", "group": "compare-json" }
+      ],
+      "view/title": [
+        { "command": "compare-json.configureOptions", "when": "view == compare-json.diffs", "group": "navigation@1" },
+        { "command": "compare-json.swapSides", "when": "view == compare-json.diffs", "group": "navigation@2" },
+        { "command": "compare-json.clearResults", "when": "view == compare-json.diffs && compare-json.hasActiveSession", "group": "navigation@3" }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        { "id": "compare-json", "title": "Compare JSON", "icon": "media/icon.svg" }
+      ]
+    },
+    "views": {
+      "compare-json": [
+        { "id": "compare-json.diffs", "name": "Differences" }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "compare-json.diffs",
+        "contents": "No comparison yet.\nRun [Compare JSON: Compare Active Editor with...](command:compare-json.compareWith) to start."
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "watch": "node build.mjs --watch",
+    "lint": "eslint",
+    "test": "npm run test-type && npm run test-unit",
+    "test-type": "tsc --noEmit",
+    "test-unit": "vitest run",
+    "vscode:package": "npm run build && vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@compare-json/core": "workspace:*",
+    "@compare-json/eslint-config": "workspace:*",
+    "@compare-json/tsconfig": "workspace:*",
+    "@types/node": "^20",
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "^3",
+    "esbuild": "^0.24.0",
+    "eslint": "^9",
+    "globals": "^16.5.0",
+    "typescript": "^5",
+    "vitest": "^4.0.18"
+  }
+}
