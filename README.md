@@ -120,10 +120,11 @@ pnpm -r lint
 The repo layout:
 
 ```
+apps/
+└── compare-json-vscode/  # VSCode extension
 packages/
 ├── compare-json-core/    # @compare-json/core — library
 ├── compare-json-cli/     # @compare-json/cli  — CLI + MCP server
-├── compare-json-vscode/  # VSCode extension
 └── internal/             # shared eslint/tsconfig (not published)
 skills/
 └── compare-json/         # SKILL.md for Claude Code / Codex CLI / OpenCode
