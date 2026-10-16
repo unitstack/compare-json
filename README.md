@@ -117,6 +117,37 @@ pnpm -r test
 pnpm -r lint
 ```
 
+### Publishing the MCP server
+
+The MCP server is published to the official registry as
+[`io.github.unitstack/compare-json`](https://registry.modelcontextprotocol.io/?q=io.github.unitstack%2Fcompare-json).
+
+Before a release, update the version in all three locations:
+
+- `packages/compare-json-cli/package.json`
+- `server.json`
+- `server.json` → `packages[0].version`
+
+Build, test, and publish the npm package locally:
+
+```bash
+pnpm --filter @compare-json/cli... build
+pnpm --filter @compare-json/cli test
+npm login
+pnpm --filter @compare-json/cli publish --access public --no-git-checks
+```
+
+After npm shows the new version, authenticate with a GitHub account that can
+access the `unitstack` organization and publish the Registry metadata:
+
+```bash
+npm view @compare-json/cli@0.1.3 mcpName
+mcp-publisher login github
+mcp-publisher publish server.json
+```
+
+Do not commit npm or GitHub credentials to the repository.
+
 The repo layout:
 
 ```
